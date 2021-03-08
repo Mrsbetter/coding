@@ -2,13 +2,9 @@
  * @Date: 2021/03/04
  * @LastEditors: YanShen
  */
-import { getUnUsedKeys } from '../src/case6';
+import { getUnUsedKeys } from '../case6';
 
 describe('getUnUsedKeys function', () => {
-  // Read more about fake timers
-  // http://facebook.github.io/jest/docs/en/timer-mocks.html#content
-  jest.useFakeTimers();
-
   const case6 = {
     allKeys: [0, 1, 2, 3, 4, 5, 6, 7, 8, 9],
     usedKeys: [2, 3, 4],

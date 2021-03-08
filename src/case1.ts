@@ -16,11 +16,11 @@
  * @param {object} arr - A obj.
  * @returns {Promise<string>}
  */
-const getString = (arr) => {
+const getString = (arr: { firstName: string, lastName?: string | null, ext?: string | null }) => {
   return [arr.firstName, arr.lastName, arr.ext].filter(Boolean).join('');
 };
 
-export const sortExtensionsByName = (extensions) => {
+export const sortExtensionsByName = (extensions: any) => {
   return extensions.sort((a, b) => {
     const pre = getString(a);
     const next = getString(b);

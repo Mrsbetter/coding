@@ -20,12 +20,12 @@ export const generateSequence = () => {
   class Sequence {
     seq: any;
     next() {
+      this.seq += 1
       return this.seq;
     }
   }
   Object.defineProperty(Sequence.prototype, 'seq', {
     get() {
-      _value += 1;
       return _value;
     },
   });

@@ -2,20 +2,16 @@
  * @Date: 2021/03/04
  * @LastEditors: YanShen
  */
-import { sortExtensionsByExtType } from '../src/case2';
+import { sortExtensionsByExtType } from '../case2';
 
 describe('sortExtensionsByExtType function', () => {
-  // Read more about fake timers
-  // http://facebook.github.io/jest/docs/en/timer-mocks.html#content
-  jest.useFakeTimers();
-
   const case2 = [
     { firstName: 'aa', lastName: '', ext: 'bb', extType: 'DigitalUser' },
     { firstName: 'aa', lastName: '', ext: '', extType: 'VirtualUser' },
     { firstName: '', lastName: 'ss', ext: 'dd', extType: 'FaxUser' },
     { firstName: 'cc', lastName: 'ss', ext: 'aa', extType: 'FaxUser' },
     { firstName: 'dd', lastName: 'aa', ext: 'bb', extType: 'Dept' },
-    { firstName: 'dd', lastName: '55', ext: 'bb', extType: 'AO' }
+    { firstName: 'dd', lastName: '55', ext: 'bb', extType: 'AO' },
   ];
   const result2 = [
     { firstName: 'aa', lastName: '', ext: 'bb', extType: 'DigitalUser' },
@@ -23,7 +19,7 @@ describe('sortExtensionsByExtType function', () => {
     { firstName: '', lastName: 'ss', ext: 'dd', extType: 'FaxUser' },
     { firstName: 'cc', lastName: 'ss', ext: 'aa', extType: 'FaxUser' },
     { firstName: 'dd', lastName: '55', ext: 'bb', extType: 'AO' },
-    { firstName: 'dd', lastName: 'aa', ext: 'bb', extType: 'Dept' }
+    { firstName: 'dd', lastName: 'aa', ext: 'bb', extType: 'Dept' },
   ];
 
   // Assert sortExtensionsByExtType result
