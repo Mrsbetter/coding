@@ -16,14 +16,38 @@
  * @param {object} arr - A obj.
  * @returns {Promise<string>}
  */
-const getString = (arr: { firstName: string, lastName?: string | null, ext?: string | null }) => {
-  return [arr.firstName, arr.lastName, arr.ext].filter(Boolean).join('');
+enum ExtType {
+  DigitalUser = 'DigitalUser',
+  VirtualUser = 'VirtualUser',
+  FaxUser = 'FaxUser',
+  Dept = 'Dept',
+  AO = 'AO'
+}
+
+type ExtensionType = {
+  firstName: string,
+  lastName?: string,
+  ext?: string,
+  extType: ExtType
+}
+
+type SortFuction = (e: ExtensionType[]) => ExtensionType[];
+
+const getString = (arr: ExtensionType) => {
+  return [arr.firstName, arr.lastName, arr.ext]
+  .filter(Boolean)
+  .join('');
 };
 
-export const sortExtensionsByName = (extensions: any) => {
-  return extensions.sort((a, b) => {
+const sortExtensionsByName: SortFuction = (extensions: ExtensionType[]) => {
+  return extensions.sort((a: ExtensionType, b: ExtensionType) => {
     const pre = getString(a);
     const next = getString(b);
-    return pre > next;
+    return pre.localeCompare(next);
   });
+}
+
+export {
+  ExtType,
+  sortExtensionsByName
 };

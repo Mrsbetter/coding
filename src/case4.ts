@@ -18,17 +18,32 @@
     {....}
   ]
 **/
+type SaleItemsType = {
+  month: number,
+  date: number,
+  transationId?: string,
+  salePrice: number
+}
 
-export const averageByQuarter = (saleItems) => {
-  const res = [
+type SaleAverageType = {
+  quarter: number,
+  averagePrices?: number,
+  transactionNums?: number
+}
+
+type AverageFuction = (e: SaleItemsType[]) => SaleAverageType[];
+
+export const averageByQuarter: AverageFuction = (saleItems: SaleItemsType[]) => {
+  const res: SaleAverageType[] = [
     { quarter: 1, averagePrices: 0, transactionNums: 0 },
     { quarter: 2, averagePrices: 0, transactionNums: 0 },
     { quarter: 3, averagePrices: 0, transactionNums: 0 },
     { quarter: 4, averagePrices: 0, transactionNums: 0 },
   ];
+
   const { ceil } = Math;
 
-  saleItems.forEach((item) => {
+  saleItems.forEach((item: SaleItemsType) => {
     const { month, salePrice } = item;
     const quarter = ceil(month / 3);
     const { averagePrices, transactionNums } = res[quarter - 1];
@@ -36,5 +51,6 @@ export const averageByQuarter = (saleItems) => {
     res[quarter - 1].averagePrices += (salePrice - averagePrices) / tNums;
     res[quarter - 1].transactionNums = tNums;
   });
+  
   return res;
 };

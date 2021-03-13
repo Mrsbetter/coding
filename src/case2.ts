@@ -12,15 +12,43 @@
   DigitalUser < VirtualUser < FaxUser < AO < Dept.
 **/
 
-export const sortExtensionsByExtType = (extensions) => {
+/**
+ * Returns a Promise<string>.
+ *
+ * @param {object} arr - A obj.
+ * @returns {Promise<string>}
+ */
+enum ExtType {
+  DigitalUser = 'DigitalUser',
+  VirtualUser = 'VirtualUser',
+  FaxUser = 'FaxUser',
+  Dept = 'Dept',
+  AO = 'AO'
+}
+
+type ExtensionType = {
+  firstName: string,
+  lastName?: string,
+  ext?: string,
+  extType: ExtType
+}
+
+type SortFuction = (e: ExtensionType[]) => ExtensionType[];
+
+const sortExtensionsByExtType: SortFuction = (extensions: ExtensionType[]) => {
   const sortMap = new Map([
-    ['DigitalUser', 1],
-    ['VirtualUser', 2],
-    ['FaxUser', 3],
-    ['AO', 4],
-    ['Dept', 5],
+    [ExtType.DigitalUser, 1],
+    [ExtType.VirtualUser, 2],
+    [ExtType.FaxUser, 3],
+    [ExtType.AO, 4],
+    [ExtType.Dept, 5],
   ]);
-  return extensions.sort((a, b) => {
+  return extensions.sort((a: ExtensionType, b: ExtensionType) => {
     return sortMap.get(a.extType) - sortMap.get(b.extType);
   });
+};
+
+export {
+  ExtType,
+  sortExtensionsByExtType
 };

@@ -8,8 +8,11 @@
     usedKeys: an array to store all used keys like [2,3,4];
     We want to get an array which contains all the unused keys,in this example it would be: [0,1,5,6,7,8,9]
 **/
+type AllKeysType = 0 | 1 | 2 | 3 | 4 | 5 | 6 | 7 | 8 | 9
 
-export const getUnUsedKeys = (allKeys, usedKeys) => {
+type UnUsedKeysFuction = (e: AllKeysType[], h: AllKeysType[]) => AllKeysType[];
+
+export const getUnUsedKeys: UnUsedKeysFuction = (allKeys: AllKeysType[], usedKeys: AllKeysType[]) => {
   const temp = new Set(usedKeys);
   return allKeys.filter((key) => !temp.has(key));
 };

@@ -18,21 +18,37 @@
   	{....}
   ]
 **/
+type SaleItemsType = {
+  month: number,
+  date: number,
+  transationId?: string,
+  salePrice: number
+}
 
-export const sumByQuarter = (saleItems) => {
-  const res = [
+type SaleTotalType = {
+  quarter: number,
+  totalPrices?: number,
+  transactionNums?: number
+}
+
+type SortFuction = (e: SaleItemsType[]) => SaleTotalType[];
+
+export const sumByQuarter: SortFuction = (saleItems: SaleItemsType[]) => {
+  const res: SaleTotalType[] = [
     { quarter: 1, totalPrices: 0, transactionNums: 0 },
     { quarter: 2, totalPrices: 0, transactionNums: 0 },
     { quarter: 3, totalPrices: 0, transactionNums: 0 },
     { quarter: 4, totalPrices: 0, transactionNums: 0 },
   ];
+
   const { ceil } = Math;
 
-  saleItems.forEach((item) => {
+  saleItems.forEach((item: SaleItemsType) => {
     const { month, salePrice } = item;
     const quarter = ceil(month / 3);
     res[quarter - 1].totalPrices += salePrice;
     res[quarter - 1].transactionNums++;
   });
+
   return res;
 };
