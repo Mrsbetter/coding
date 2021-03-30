@@ -14,19 +14,24 @@
   sequence2.next() --> 3;
   sequence2.next() --> 4;
 **/
+let _value:number = 0;
+
+class Sequence {
+  seq: number;
+  next() {
+    return ++this.seq;
+  };
+};
+
+Object.defineProperty(Sequence.prototype, 'seq', {
+  get() {
+    return _value;
+  },
+  set(val: number) {
+    _value = val;
+  }
+});
 
 export const generateSequence = () => {
-  let _value = 0;
-  class Sequence {
-    seq: any;
-    next() {
-      this.seq += 1
-      return this.seq;
-    }
-  }
-  Object.defineProperty(Sequence.prototype, 'seq', {
-    get() {
-      return _value;
-    },
-  });
+  return new Sequence();
 };
