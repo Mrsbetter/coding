@@ -14,24 +14,21 @@
   sequence2.next() --> 3;
   sequence2.next() --> 4;
 **/
-let _value:number = 0;
+let index: number = 1;
 
-class Sequence {
-  seq: number;
-  next() {
-    return ++this.seq;
-  };
-};
-
-Object.defineProperty(Sequence.prototype, 'seq', {
-  get() {
-    return _value;
-  },
-  set(val: number) {
-    _value = val;
+function* gen() {
+  while (true) {
+    yield index++;
   }
-});
+}
+export class Sequence {
+  private _impl: Generator<number, void, unknown>;
 
-export const generateSequence = () => {
-  return new Sequence();
-};
+  constructor() {
+    this._impl = gen();
+  }
+
+  next() {
+    return this._impl.next().value;
+  }
+}

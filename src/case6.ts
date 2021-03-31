@@ -14,5 +14,5 @@ type UnUsedKeysFuction = (e: AllKeysType[], h: AllKeysType[]) => AllKeysType[];
 
 export const getUnUsedKeys: UnUsedKeysFuction = (allKeys: AllKeysType[], usedKeys: AllKeysType[]) => {
   const temp = new Set(usedKeys);
-  return allKeys.filter((key) => !temp.has(key));
+  return allKeys.filter((key: number) => !temp.has(key));
 };
